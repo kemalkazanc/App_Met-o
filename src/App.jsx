@@ -27,15 +27,23 @@ function App() {
 
   return (
     <main>
-      <div className="loader-container">
+      <div className={`loader-container ${!weatherData && "active"}`}>
         <img src={loader} alt="Loading icon" />
       </div>
-      <p className="city-name">Istanbul</p>
-      <p className="country-name">Turquie</p>
-      <p className="temperature">23°</p>
-      <div className="info-icon-container">
-        <img src="/icons/01d.svg" className="info-icon" alt="weather icon" />
-      </div>
+      {weatherData && (
+        <>
+          <p className="city-name">{weatherData.city}</p>
+          <p className="country-name">{weatherData.country}</p>
+          <p className="temperature">{weatherData.temperature}°</p>
+          <div className="info-icon-container">
+            <img
+              src={`/icons/${weatherData.iconId}.svg`}
+              className="info-icon"
+              alt="weather icon"
+            />
+          </div>
+        </>
+      )}
     </main>
   );
 }
